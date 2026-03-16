@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使い方ガイド | JSON整形ツール</title>
+  <meta name="description" content="JSON整形ツールの使い方ガイド。基本操作、整形・ミニファイ・キー並び替え・シンタックスハイライトの使い方を解説します。">
+  <style>
+    :root { --bg:#f8fafc; --card:#ffffff; --muted:#666666; --fg:#1a1a1a; --acc:#2563eb; }
+    *{box-sizing:border-box; margin:0; padding:0}
+    body{background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:860px;margin:0 auto;padding:24px 16px}
+    h1{font-size:1.6rem;font-weight:800;margin-bottom:1rem;color:var(--acc)}
+    h2{font-size:1.2rem;font-weight:700;margin:2rem 0 0.5rem;padding-bottom:0.3rem;border-bottom:1px solid #e5e7eb}
+    h3{font-size:1rem;font-weight:600;margin:1.2rem 0 0.4rem;color:var(--acc)}
+    p{margin-bottom:0.8rem}
+    ul,ol{margin:0.5rem 0 1rem 1.5rem}
+    li{margin-bottom:0.4rem}
+    a{color:var(--acc);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .card{background:var(--card);border:1px solid #e5e7eb;border-radius:14px;padding:16px;margin:1rem 0;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+    .step{counter-increment:step;position:relative;padding-left:2.5rem;margin-bottom:1.5rem}
+    .step::before{content:counter(step);position:absolute;left:0;top:0;width:2rem;height:2rem;background:var(--acc);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem}
+    .steps{counter-reset:step}
+    code{background:#f5f5f5;border:1px solid #e5e7eb;border-radius:6px;padding:2px 6px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:0.9em}
+    .badge{display:inline-block;padding:2px 10px;border:1px solid #d0d5dd;border-radius:999px;font-size:12px;color:#555;margin:2px}
+    .note{background:#f0f5ff;border-left:3px solid var(--acc);padding:12px 16px;border-radius:0 8px 8px 0;margin:1rem 0;font-size:0.9rem}
+    .footer{margin-top:2rem;padding-top:1rem;border-top:1px solid #e5e7eb;font-size:12px;color:var(--muted);text-align:center}
+    .footer a{color:var(--muted)}
+    .footer .sep{margin:0 8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>JSON整形ツール 使い方ガイド</h1>
+
+    <p>
+      JSON整形ツールは、JSONデータをブラウザだけで整形・検証できる無料ツールです。
+      このページでは基本的な使い方を説明します。
+    </p>
+
+    <h2>基本的な使い方</h2>
+
+    <div class="steps">
+      <div class="step">
+        <strong>JSONを入力する</strong>
+        <p>入力エリアに、整形したいJSONデータを貼り付けます。</p>
+      </div>
+      <div class="step">
+        <strong>オプションを設定する</strong>
+        <p>必要に応じて、インデントサイズやキーの並び替えオプションを選択します。</p>
+      </div>
+      <div class="step">
+        <strong>「整形する」ボタンをクリック</strong>
+        <p>ボタンを押すと、出力エリアにシンタックスハイライト付きで整形結果が表示されます。</p>
+      </div>
+      <div class="step">
+        <strong>結果をコピー</strong>
+        <p>「コピー」ボタンで整形結果をクリップボードにコピーできます。</p>
+      </div>
+    </div>
+
+    <h2>機能一覧</h2>
+
+    <h3>整形（Pretty Print）</h3>
+    <p>JSONを見やすいインデント付き形式に整形します。インデント幅は 2 / 3 / 4 / 8 スペースまたはタブから選べます。</p>
+
+    <h3>ミニファイ</h3>
+    <p>改行・空白を除去し、JSONを最小サイズの1行形式に変換します。APIリクエストやデータ転送時に便利です。</p>
+
+    <h3>キーの並び替え（A→Z）</h3>
+    <p>チェックを入れると、オブジェクトのキーをアルファベット順（A→Z）にソートします。ネストされたオブジェクトも再帰的にソートされます。</p>
+
+    <h3>シンタックスハイライト</h3>
+    <p>整形結果は色分け表示されます：</p>
+    <div style="margin:0.5rem 0 1rem">
+      <span class="badge" style="color:#2563eb">キー</span>
+      <span class="badge" style="color:#059669">文字列</span>
+      <span class="badge" style="color:#d97706">数値</span>
+      <span class="badge" style="color:#7c3aed">真偽値</span>
+      <span class="badge" style="color:#6b7280">null</span>
+    </div>
+
+    <h3>バリデーション</h3>
+    <p>不正なJSONを入力すると、エラーの位置（行・列）とエラーメッセージが表示されます。</p>
+
+    <div class="note">
+      入力内容はすべてブラウザ内で処理されます。サーバへのデータ送信は一切ありません。
+    </div>
+
+    <h2>注意事項</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>データはブラウザ内でのみ処理されます</strong> — サーバーへの送信は一切ありません。</li>
+        <li><strong>機密情報の入力はお控えください</strong> — パスワード、APIキー、個人情報などは入力しないでください。</li>
+        <li><strong>整形結果の正確性は保証しません</strong> — 本番環境で使用する前に、必ず内容をご確認ください。</li>
+        <li><strong>非常に大きなJSONデータ</strong>はブラウザの処理能力により、動作が遅くなる場合があります。</li>
+      </ul>
+    </div>
+
+    <p style="margin-top:2rem">
+      <a href="/apps/jsonformatter/">← ツールに戻る</a>
+    </p>
+
+    <footer class="footer">
+      <a href="/">トップ</a>
+      <span class="sep">/</span>
+      <a href="https://forms.gle/Ay2dVBVV41A2fJQ27" target="_blank" rel="noopener">お問い合わせ</a>
+      <span class="sep">/</span>
+      <a href="/apps/jsonformatter/privacy.html">プライバシーポリシー</a>
+    </footer>
+  </div>
+</body>
+</html>
